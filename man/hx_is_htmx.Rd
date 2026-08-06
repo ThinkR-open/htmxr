@@ -7,9 +7,11 @@
 hx_is_htmx(request)
 }
 \arguments{
-\item{request}{A request object (e.g. from a plumber2 handler). Must have
-a \code{headers} element — a named list or character vector of HTTP headers
-(lowercase keys, as provided by plumber2).}
+\item{request}{A request object, typically the \code{request} argument of a
+plumber2 handler. Objects exposing a \code{get_header()} accessor (such as
+plumber2 / \code{reqres} requests) are queried through it; otherwise the
+\code{headers} element is used — a named list or character vector of HTTP
+headers.}
 }
 \value{
 \code{TRUE} if the request was made by htmx, \code{FALSE} otherwise.
@@ -18,9 +20,22 @@ a \code{headers} element — a named list or character vector of HTTP headers
 Checks whether the incoming HTTP request was made by htmx by inspecting
 the \code{HX-Request} header. htmx sends this header with every AJAX request.
 }
+\details{
+plumber2 requests are \code{reqres::Request} objects, which normalise header
+names to lowercase \strong{snake_case}: \code{request$headers} holds \code{hx_request},
+never \code{hx-request}. Their \code{get_header()} accessor handles that
+normalisation itself and accepts the original HTTP name, so it is used
+whenever it is available. When falling back to \code{headers} — for hand-built
+lists in tests and examples — both \code{hx-request} and \code{hx_request} are
+accepted.
+}
 \examples{
 # Simulated htmx request
 req <- list(headers = list(`hx-request` = "true"))
+hx_is_htmx(req)
+
+# Same request with the plumber2 header naming convention
+req <- list(headers = list(hx_request = "true"))
 hx_is_htmx(req)
 
 # Regular request

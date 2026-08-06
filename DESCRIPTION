@@ -20,8 +20,10 @@ Imports:
     plumber2
 Suggests:
     dplyr,
+    fiery,
     ggplot2,
     purrr,
+    reqres,
     svglite,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
