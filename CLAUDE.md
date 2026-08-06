@@ -18,6 +18,7 @@
 | `/htmx-expert` | Revue fidélité et idiomaticité htmx | Nouvelle primitive créée ou modifiée |
 | `/shiny-ergonomie` | Regard dev Shiny sur l'intuitivité | Travail sur nommage ou documentation |
 | `/shiny-cas-usage` | Couverture fonctionnelle par cas d'usage | Alimenter la roadmap |
+| `/plumber2-expert` | Recherche docs et source plumber2 (lookup obligatoire) | Toute question plumber2, **avant** toute affirmation "ça n'existe pas" |
 
 ## Suivi de l'écosystème
 
