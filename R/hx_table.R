@@ -12,6 +12,13 @@
 #'
 #' @return A [htmltools::tagList] of `<tr>` tags.
 #'
+#' @section Serving the fragment:
+#' Annotate the route with `@serializer htmx`. plumber2's own `html`
+#' serializer does not understand a `tagList` and would send unusable markup.
+#' See [htmx-serializer].
+#'
+#' @seealso [htmx-serializer]
+#'
 #' @examples
 #' df <- data.frame(cut = c("Fair", "Good"), price = c(326L, 400L))
 #' hx_table_rows(df, columns = c("cut", "price"))

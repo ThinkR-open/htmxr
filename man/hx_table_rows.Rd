@@ -23,6 +23,13 @@ Converts a data frame into a \code{tagList} of \verb{<tr>} elements, one per row
 Designed to be used as a fragment endpoint response — the output replaces
 a \verb{<tbody>} via htmx swap.
 }
+\section{Serving the fragment}{
+
+Annotate the route with \verb{@serializer htmx}. plumber2's own \code{html}
+serializer does not understand a \code{tagList} and would send unusable markup.
+See \link{htmx-serializer}.
+}
+
 \examples{
 df <- data.frame(cut = c("Fair", "Good"), price = c(326L, 400L))
 hx_table_rows(df, columns = c("cut", "price"))
@@ -30,4 +37,7 @@ hx_table_rows(df, columns = c("cut", "price"))
 # With CSS classes on specific columns
 hx_table_rows(df, col_classes = list(price = "text-end fw-bold"))
 
+}
+\seealso{
+\link{htmx-serializer}
 }
