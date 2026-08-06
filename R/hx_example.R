@@ -43,9 +43,9 @@ hx_run_example <- function(example = NULL, port = 8080) {
   }
 
   api_file <- file.path(example_path, "api.R")
-  pr <- api(api_file, doc_type = "") |>
+  pr <- api(api_file, port = port, doc_type = "") |>
     hx_serve_assets()
 
   message("Running example '", example, "' on http://127.0.0.1:", port)
-  pr$ignite(port = port, block = TRUE)
+  pr$ignite(block = TRUE)
 }
