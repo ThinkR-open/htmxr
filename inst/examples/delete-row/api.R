@@ -88,7 +88,9 @@ function() {
 #* @parser none
 #* @serializer html
 function() {
-  make_rows(db$get())
+  # as.character() because the plumber2 html serializer renders a `shiny.tag`
+  # but not a `tagList` — it would dump the latter as raw XML.
+  as.character(make_rows(db$get()))
 }
 
 #* @delete /rows
@@ -97,5 +99,5 @@ function() {
 #* @serializer html
 function(query) {
   db$delete(query$id)
-  make_rows(db$get())
+  as.character(make_rows(db$get()))
 }
