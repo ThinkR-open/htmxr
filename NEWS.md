@@ -1,3 +1,23 @@
+# htmxr 0.3.1
+
+## Bug fixes
+
+* `hx_is_htmx()` always returned `FALSE` for real plumber2 requests. plumber2
+  requests are `reqres::Request` objects, which normalise header names to
+  snake_case: `request$headers` holds `hx_request`, never the `hx-request` the
+  function looked up. It now uses the `get_header()` accessor when available,
+  and accepts both spellings when falling back to `headers` (#22).
+* The `delete-row` example was broken: its `<tr>` fragments were returned as a
+  `tagList`, which the plumber2 `html` serializer dumps as raw XML instead of
+  rendering. Now wrapped in `as.character()`, as `infinity-scroll` and
+  `toast-notification` already do.
+
+## New features
+
+* New example `page-or-fragment` — demonstrates `hx_is_htmx()`: a single route
+  answers a browser with the full page and htmx with just the table rows,
+  which makes `push_url` produce URLs that survive a hard reload.
+
 # htmxr 0.3.0
 
 ## New features

@@ -1,6 +1,6 @@
 Package: htmxr
 Title: Build Modern Web Applications with 'htmx' and 'plumber2'
-Version: 0.3.0
+Version: 0.3.1
 Authors@R:
     person("Arthur", "Bréant", , "arthur@thinkr.fr", role = c("aut", "cre"))
 Description: A lightweight framework for building server-driven web
