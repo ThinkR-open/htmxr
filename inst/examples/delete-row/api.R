@@ -54,7 +54,7 @@ make_rows <- function(data) {
 
 #* @get /
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function() {
   hx_page(
     hx_head(title = "Delete Row", bootstrap_css),
@@ -86,18 +86,16 @@ function() {
 
 #* @get /rows
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function() {
-  # as.character() because the plumber2 html serializer renders a `shiny.tag`
-  # but not a `tagList` — it would dump the latter as raw XML.
-  as.character(make_rows(db$get()))
+  make_rows(db$get())
 }
 
 #* @delete /rows
 #* @query id:integer
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function(query) {
   db$delete(query$id)
-  as.character(make_rows(db$get()))
+  make_rows(db$get())
 }

@@ -195,7 +195,7 @@ diamond_cards <- function(page = 1) {
 
 #* @get /
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function() {
   hx_page(
     hx_head(
@@ -228,7 +228,7 @@ function() {
 #* @get /cards
 #* @query p:integer
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function(query) {
-  as.character(diamond_cards(query$p))
+  diamond_cards(query$p)
 }

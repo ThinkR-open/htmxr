@@ -41,7 +41,7 @@ storr::driver_environment()
 
 #* @get /
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function(datastore) {
   last_cut <- datastore$session$last_cut %||% "all"
 
@@ -114,7 +114,7 @@ function(datastore) {
 #* @get /rows
 #* @query cut:string("all")
 #* @parser none
-#* @serializer none
+#* @serializer htmx
 function(query, datastore) {
   # Persist the user's choice — pre-fills the dropdown on next visit.
   datastore$session$last_cut <- query$cut

@@ -35,7 +35,7 @@ generate_plot <- function(bins = 30) {
 
 #* @get /
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function() {
   hx_page(
     hx_head(

@@ -13,7 +13,7 @@ bootstrap_css <- tags$link(
 
 #* @get /
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function() {
   hx_page(
     hx_head(title = "Toast Notification", bootstrap_css),
@@ -45,23 +45,23 @@ function() {
 
 #* @post /submit
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function(response) {
   # Fires the "notified" event in the browser — the toast div above catches it
   # and makes its own GET /toast request.
   # No HTML is sent by hx_trigger() itself.
   hx_trigger(response, "notified")
-  as.character(tags$p(class = "text-success fw-bold", "Action completed."))
+  tags$p(class = "text-success fw-bold", "Action completed.")
 }
 
 #* @get /toast
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function() {
   # Returns the toast HTML fragment — called by the toast div when it receives
   # the "notified" event, not directly by the button POST.
   # The CSS animation fades the toast out after 3s — no JS required.
-  as.character(tagList(
+  tagList(
     tags$style(
       "
       @keyframes fadeOut {
@@ -76,5 +76,5 @@ function() {
       tags$strong("Done!"),
       paste(" Triggered at", format(Sys.time(), "%H:%M:%S"), ".")
     )
-  ))
+  )
 }

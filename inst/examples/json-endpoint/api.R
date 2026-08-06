@@ -34,7 +34,7 @@ function(query) {
 # ── HTML page ──────────────────────────────────────────────────────────────────
 #* @get /
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function() {
   hx_page(
     hx_head(
@@ -100,7 +100,7 @@ function() {
 #* @get /rows
 #* @query cut:string("all")
 #* @parser none
-#* @serializer none
+#* @serializer htmx
 function(query) {
   hx_table_rows(
     diamond_data(query$cut),

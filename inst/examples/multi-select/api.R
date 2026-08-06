@@ -36,7 +36,7 @@ diamond_rows <- function(cuts) {
 
 #* @get /
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function() {
   hx_page(
     hx_head(title = "Multi-select example", bootstrap_css),
@@ -118,7 +118,7 @@ function() {
 
 #* @get /rows
 #* @parser none
-#* @serializer none
+#* @serializer htmx
 function(query) {
   # `query$cut` is NULL when no box is checked, otherwise a character vector
   cuts <- query$cut

@@ -43,15 +43,11 @@ diamond_data <- function(cut_filter = "all") {
 #* @get /
 #* @query cut:string("all")
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function(request, query) {
   # htmx only needs the new rows — send them and stop here.
-  # `as.character()` because the html serializer renders a `tagList` as-is
-  # only once it has been turned into a string.
   if (hx_is_htmx(request)) {
-    return(as.character(
-      hx_table_rows(diamond_data(query$cut), columns = table_columns)
-    ))
+    return(hx_table_rows(diamond_data(query$cut), columns = table_columns))
   }
 
   # A regular browser request gets the full page, already filtered.
