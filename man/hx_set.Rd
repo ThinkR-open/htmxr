@@ -28,7 +28,7 @@ hx_set(
 )
 }
 \arguments{
-\item{tag}{An \link[htmltools:builder]{htmltools::tags} object to modify.}
+\item{tag}{An \link[htmltools:tags]{htmltools::tags} object to modify.}
 
 \item{get}{URL for \code{hx-get}.}
 
@@ -101,7 +101,7 @@ The input \code{tag} with htmx attributes appended.
 }
 \description{
 A generic modifier that appends htmx attributes to an existing
-\link[htmltools:builder]{htmltools::tags} object. Works with any HTML element.
+\link[htmltools:tags]{htmltools::tags} object. Works with any HTML element.
 }
 \examples{
 tags$div(id = "plot") |>
