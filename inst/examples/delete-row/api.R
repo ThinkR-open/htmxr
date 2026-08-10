@@ -54,7 +54,7 @@ make_rows <- function(data) {
 
 #* @get /
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function() {
   hx_page(
     hx_head(title = "Delete Row", bootstrap_css),
@@ -86,7 +86,7 @@ function() {
 
 #* @get /rows
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function() {
   make_rows(db$get())
 }
@@ -94,7 +94,7 @@ function() {
 #* @delete /rows
 #* @query id:integer
 #* @parser none
-#* @serializer html
+#* @serializer htmx
 function(query) {
   db$delete(query$id)
   make_rows(db$get())

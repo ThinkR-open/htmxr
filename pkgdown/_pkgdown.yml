@@ -59,6 +59,7 @@ reference:
   - title: Server
     desc: Server-side utilities for handling htmx requests.
     contents:
+      - htmx-serializer
       - hx_is_htmx
       - hx_trigger
       - hx_trigger_after_swap

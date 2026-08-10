@@ -106,7 +106,7 @@ embed sensitive tokens in HTML attributes.}
 \item{...}{Additional HTML attributes passed to the \verb{<input>} element.}
 }
 \value{
-An \link[htmltools:builder]{htmltools::tags} object.
+An \link[htmltools:tags]{htmltools::tags} object.
 }
 \description{
 Creates an \verb{<input type="range">} element with optional htmx attributes.

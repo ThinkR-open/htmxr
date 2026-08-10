@@ -107,7 +107,7 @@ HTML attributes.}
 \item{...}{Additional HTML attributes passed to the \verb{<table>} element.}
 }
 \value{
-An \link[htmltools:builder]{htmltools::tags} object (\verb{<table>}).
+An \link[htmltools:tags]{htmltools::tags} object (\verb{<table>}).
 }
 \description{
 Builds a complete \verb{<table>} element with a \verb{<thead>} and a \verb{<tbody>}.
