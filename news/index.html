@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">htmxr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,20 @@
       <small>Source: <a href="https://github.com/hyperverse-r/htmxr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.1" id="htmxr-031">htmxr 0.3.1<a class="anchor" aria-label="anchor" href="#htmxr-031"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-0-3-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-1"></a></h3>
+<ul><li>
+<code><a href="../reference/hx_is_htmx.html">hx_is_htmx()</a></code> always returned <code>FALSE</code> for real plumber2 requests. plumber2 requests are <code><a href="https://reqres.data-imaginist.com/reference/Request.html" class="external-link">reqres::Request</a></code> objects, which normalise header names to snake_case: <code>request$headers</code> holds <code>hx_request</code>, never the <code>hx-request</code> the function looked up. It now uses the <code>get_header()</code> accessor when available, and accepts both spellings when falling back to <code>headers</code> (<a href="https://github.com/hyperverse-r/htmxr/issues/22" class="external-link">#22</a>).</li>
+<li>The <code>delete-row</code> example was broken: its <code>&lt;tr&gt;</code> fragments were returned as a <code>tagList</code>, which the plumber2 <code>html</code> serializer dumps as raw XML instead of rendering. Now wrapped in <code><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character()</a></code>, as <code>infinity-scroll</code> and <code>toast-notification</code> already do.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-0-3-1">New features<a class="anchor" aria-label="anchor" href="#new-features-0-3-1"></a></h3>
+<ul><li><p>New plumber2 serializer <code>htmx</code>, registered when htmxr is loaded. Annotate a route with <code>@serializer htmx</code> and it sends any htmltools output as <code>text/html</code> — a <code>tagList</code> fragment as readily as a full page. plumber2’s <code>html</code> serializer only understands a bare string or a single tag, so a <code>tagList</code> (what <code><a href="../reference/hx_table_rows.html">hx_table_rows()</a></code> returns) was sent as unusable markup with a <code>200</code> status; <code>@serializer none</code> avoided that but mislabelled the response <code>text/plain</code>. All examples now use <code>@serializer htmx</code> and the <code><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character()</a></code> calls that worked around this are gone.</p></li>
+<li><p>New example <code>page-or-fragment</code> — demonstrates <code><a href="../reference/hx_is_htmx.html">hx_is_htmx()</a></code>: a single route answers a browser with the full page and htmx with just the table rows, which makes <code>push_url</code> produce URLs that survive a hard reload.</p></li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="htmxr-030">htmxr 0.3.0<a class="anchor" aria-label="anchor" href="#htmxr-030"></a></h2>
 <div class="section level3">

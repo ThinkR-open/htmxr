@@ -28,7 +28,7 @@ example names invisibly. Otherwise does not return (the server blocks).
 
 ``` r
 hx_run_example() # list available examples
-#> Available examples: delete-row, hello, infinity-scroll, json-endpoint, select-input, toast-notification
+#> Available examples: delete-row, hello, infinity-scroll, json-endpoint, multi-select, page-or-fragment, reactive-values, select-input, toast-notification
 #> Run one with: hx_run_example("hello")
 if (interactive()) {
   hx_run_example("hello") # run the hello example

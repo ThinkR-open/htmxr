@@ -32,6 +32,17 @@ A
 [htmltools::tagList](https://rstudio.github.io/htmltools/reference/tagList.html)
 of `<tr>` tags.
 
+## Serving the fragment
+
+Annotate the route with `@serializer htmx`. plumber2's own `html`
+serializer does not understand a `tagList` and would send unusable
+markup. See
+[htmx-serializer](https://hyperverse-r.github.io/htmxr/reference/htmx-serializer.md).
+
+## See also
+
+[htmx-serializer](https://hyperverse-r.github.io/htmxr/reference/htmx-serializer.md)
+
 ## Examples
 
 ``` r

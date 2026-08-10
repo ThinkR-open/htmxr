@@ -9,7 +9,7 @@ the HX-Request header. htmx sends this header with every AJAX request."><meta pr
 
     <a class="navbar-brand me-2" href="../index.html">htmxr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,20 +48,37 @@ the <code>HX-Request</code> header. htmx sends this header with every AJAX reque
 
 
 <dl><dt id="arg-request">request<a class="anchor" aria-label="anchor" href="#arg-request"></a></dt>
-<dd><p>A request object (e.g. from a plumber2 handler). Must have
-a <code>headers</code> element — a named list or character vector of HTTP headers
-(lowercase keys, as provided by plumber2).</p></dd>
+<dd><p>A request object, typically the <code>request</code> argument of a
+plumber2 handler. Objects exposing a <code>get_header()</code> accessor (such as
+plumber2 / <code>reqres</code> requests) are queried through it; otherwise the
+<code>headers</code> element is used — a named list or character vector of HTTP
+headers.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p><code>TRUE</code> if the request was made by htmx, <code>FALSE</code> otherwise.</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>plumber2 requests are <code><a href="https://reqres.data-imaginist.com/reference/Request.html" class="external-link">reqres::Request</a></code> objects, which normalise header
+names to lowercase <strong>snake_case</strong>: <code>request$headers</code> holds <code>hx_request</code>,
+never <code>hx-request</code>. Their <code>get_header()</code> accessor handles that
+normalisation itself and accepts the original HTTP name, so it is used
+whenever it is available. When falling back to <code>headers</code> — for hand-built
+lists in tests and examples — both <code>hx-request</code> and <code>hx_request</code> are
+accepted.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Simulated htmx request</span></span></span>
 <span class="r-in"><span><span class="va">req</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>headers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>`hx-request` <span class="op">=</span> <span class="st">"true"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">hx_is_htmx</span><span class="op">(</span><span class="va">req</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Same request with the plumber2 header naming convention</span></span></span>
+<span class="r-in"><span><span class="va">req</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>headers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hx_request <span class="op">=</span> <span class="st">"true"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">hx_is_htmx</span><span class="op">(</span><span class="va">req</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>

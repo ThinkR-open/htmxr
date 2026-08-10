@@ -11,7 +11,7 @@ a &amp;lt;tbody&amp;gt; via htmx swap."><meta property="og:image" content="https
 
     <a class="navbar-brand me-2" href="../index.html">htmxr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,6 +67,18 @@ keyed by column name. Example: <code>list(price = "text-end fw-bold")</code>.</p
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <a href="https://rstudio.github.io/htmltools/reference/tagList.html" class="external-link">htmltools::tagList</a> of <code>&lt;tr&gt;</code> tags.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="serving-the-fragment">Serving the fragment<a class="anchor" aria-label="anchor" href="#serving-the-fragment"></a></h2>
+
+
+<p>Annotate the route with <code>@serializer htmx</code>. plumber2's own <code>html</code>
+serializer does not understand a <code>tagList</code> and would send unusable markup.
+See <a href="htmx-serializer.html">htmx-serializer</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="htmx-serializer.html">htmx-serializer</a></p></div>
     </div>
 
     <div class="section level2">
